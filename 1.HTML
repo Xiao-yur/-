@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <style>
+        .box .shul a {
+            text-decoration: none;
+            border: 1px solid black;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .box .shuz {
+            width: 20px;
+        }
+
+        .box img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <table border="1">
+            <tr>
+                <td>
+                    <p>选择</p>
+                </td>
+                <td>
+                    <p>图片</p>
+                </td>
+                <td>
+                    <p>商品数量</p>
+                </td>
+                <td>
+                    <p>商品单价</p>
+                </td>
+                <td>
+                    <p>商品总价</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="cnn">
+                </td>
+                <td>
+                    <img src="./01.jpg" alt="">
+                </td>
+                <td class="shul">
+                    <p>
+                        <a href="#" class="jian">-</a>
+                        <input type="text" value="1" class="shuz">
+                        <a href="#" class="jia">+</a>
+                    </p>
+                </td>
+                <td class="pr">
+                    <span class="danj">16</span>
+                </td>
+                <td class="ssd">
+                    <span class="zongj">16</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="cnn">
+                </td>
+                <td>
+                    <img src="./02.jpg" alt="">
+                </td>
+                <td class="shul">
+                    <p>
+                        <a href="#" class="jian">-</a>
+                        <input type="text" value="1" class="shuz">
+                        <a href="#" class="jia">+</a>
+                    </p>
+                </td>
+                <td class="pr">
+                    <span class="danj">5</span>
+                </td>
+                <td class="ssd">
+                    <span class="zongj">5</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="cnn">
+                </td>
+                <td>
+                    <img src="./03.jpg" alt="">
+                </td>
+                <td class="shul">
+                    <p>
+                        <a href="#" class="jian">-</a>
+                        <input type="text" value="1" class="shuz">
+                        <a href="#" class="jia">+</a>
+                    </p>
+                </td>
+                <td class="pr">
+                    <p>
+                        <span class="danj">12</span>
+                    </p>
+                </td>
+                <td class="ssd">
+                    <p>
+                        <span class="zongj">12</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" class="btn">全选
+                </td>
+                <td colspan="3">
+                    全部价格
+                </td>
+                <td>
+                    <span class="qbjg">33</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        $('.btn').click(function () {
+            $(this).prop('checked');
+            $('.cnn').prop('checked', $(this).prop('checked'));
+        })
+        $('.cnn').click(function () {
+            if ($('cnn:checked').length == $('.cnn').length) {
+                $('btn').prop('cnn', true);
+            } else {
+                $('btn').prop('cnn', false);
+            }
+        })
+
+        $('.jia').click(function () {
+            var a = $(this).siblings('.shuz').val();
+            a++;
+            $(this).siblings('.shuz').val(a);
+            var b = $(this).parent().parent().siblings('.pr').find('.danj').text();
+            $(this).parent().parent().siblings('.ssd').find('.zongj').text(b * a);
+        })
+        $('.jian').click(function () {
+            var a = $(this).siblings('.shuz').val();
+            if (a-- == 1) {
+                return false;
+            }
+            $(this).siblings('.shuz').val(a);
+            var b = $(this).parent().parent().siblings('.pr').find('.danj').text();
+            $(this).parent().parent().siblings('.ssd').find('.zongj').text(b * a);
+        })
+
+        $('.shuz').change(function () {
+            var a = $(this).val();
+            var b = $(this).parent().parent().siblings('.pr').find('.danj').text();
+            $(this).parent().parent().siblings('.ssd').find('.zongj').text(b * a);
+        })
+    </script>
+</body>
+
+</html>
